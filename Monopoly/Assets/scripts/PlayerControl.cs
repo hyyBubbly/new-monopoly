@@ -35,6 +35,12 @@ public class PlayerControl : MonoBehaviour
     /// </summary>
     public GameObject actionCanvas;
 
+    /// <summary>
+    /// 摄像机跟随相关属性
+    /// </summary>
+    public Camera myCamera;
+    private Vector3 offset = new Vector3(0, 0, 0);//玩家上一个位置，为了实现摄像机视觉跟随
+    //private float rotateSpeed = 2;//鼠标控制镜头围绕角色旋转的速度
 
 
     // Start is called before the first frame update
@@ -42,6 +48,8 @@ public class PlayerControl : MonoBehaviour
     {
         initState();//初始化
         whoseTurn = 0;//开始是玩家的回合
+
+        offset = this.transform.position;//记录角色一开始的位置
     }
 
     // Update is called once per frame
@@ -82,6 +90,20 @@ public class PlayerControl : MonoBehaviour
             else { }
         }
     }
+    //实现视觉跟随的代码放在LateUpdate(){}里面
+    void LateUpdate()
+    {
+        //摄像机跟随角色移动，移动量=角色当前位置-角色上一个位置
+        myCamera.transform.position += this.transform.position - offset;
+        offset = this.transform.position;//然后再记录人物位置
+        //以下代码实现视角随着鼠标方向旋转
+        ////获取鼠标水平方向的输入
+        //float mouseX = Input.GetAxis("Mouse X") * rotateSpeed;
+        ////让摄像机以角色的位置，绕Y轴旋转角度
+        //myCamera.transform.RotateAround(this.transform.position, Vector3.up, mouseX);
+    }
+
+
     void initState()//初始化
     {
         isGameOver = false;
