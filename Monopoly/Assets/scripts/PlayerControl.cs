@@ -1,10 +1,14 @@
+//PlayerControl脚本，挂在了物体Player上
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class PlayerControl : MonoBehaviour
 {
-    
+    /// <summary>
+    /// 按键判断
+    /// </summary>
 
     /// <summary>
     /// 按键判断
@@ -29,6 +33,8 @@ public class PlayerControl : MonoBehaviour
     public int whoseTurn;//保存现在是谁的回合，玩家的回合==0，电脑一号的回合==1，电脑二号的回合==2，当三人各自行动完一次，whoseTurn==3，此时总游戏回合数加一
     Vector3 moveAmount;
     Vector3 normal = new Vector3(1, 1, 0);
+    private float walkSpeed = 2;//角色移动的速度
+    private float turnSpeed = 3;//角色转身的速度
     DateTime startTime;
     /// <summary>
     /// 组件
