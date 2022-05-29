@@ -36,5 +36,6 @@ public class LandScape_move : MonoBehaviour
         //剩余时间为0则结束一个周期，剩余时间重新设置为5s
         else
             restTime = 5f;
+
     }
 }
